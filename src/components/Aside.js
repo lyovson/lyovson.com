@@ -2,34 +2,130 @@
 
 import React, { useContext } from "react";
 import { css, jsx } from "@emotion/core";
+import { useStaticQuery, graphql } from "gatsby";
 import { ThemeContext } from "./Layout";
+import Img from "gatsby-image";
+import { authors } from "../data/authors";
+
+import { Icon, InlineIcon } from "@iconify/react";
+import twitterIcon from "@iconify/icons-simple-icons/twitter";
+import facebookIcon from "@iconify/icons-simple-icons/facebook";
+import linkedinIcon from "@iconify/icons-simple-icons/linkedin";
+import mailDotRu from "@iconify/icons-simple-icons/mail-dot-ru";
+import { StyledButton } from "./styled/StyledButton";
+
+const socialIcons = {
+  twitter: twitterIcon,
+  facebook: facebookIcon,
+  linkedin: linkedinIcon,
+  email: mailDotRu
+};
 
 export const Aside = () => {
   const { current, send } = useContext(ThemeContext);
+  const user = authors[current.value.user];
+
+  const data = useStaticQuery(graphql`
+    query {
+      rafaImage: file(relativePath: { eq: "rafa.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+          }
+        }
+      }
+      jessImage: file(relativePath: { eq: "jess.jpg" }) {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+          }
+        }
+      }
+    }
+  `);
+
+  if (current.value.user === "both") {
+    return null;
+  }
+
   return (
     <aside
+      id="bio"
       css={css`
-        display: ${current.value.user === "both" ? "none" : "grid"};
+        display: grid;
         grid-area: aside;
-        padding: 2rem;
+        place-items: center;
+        padding: 5px;
+        border-radius: 10px;
+        max-width: 90%;
+        margin: auto;
         background: linear-gradient(
           90deg,
-          var(--rafa-accent) ${current.value.user === "rafa" ? "50%" : "0%"},
-          var(--jess-accent) ${current.value.user === "jess" ? "50%" : "100%"}
+          var(--rafa-primary) ${current.value.user === "rafa" ? "70%" : "0%"},
+          var(--jess-primary) ${current.value.user === "jess" ? "70%" : "100%"}
         );
       `}
     >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse commodi
-      debitis tempore consequuntur minus quo aspernatur quam aliquid
-      exercitationem? Amet accusamus, repellat voluptatibus quibusdam ea iste
-      rerum in quidem, explicabo praesentium culpa expedita nulla consequuntur
-      ratione fuga porro nobis vel quasi veritatis perferendis excepturi. Fugit
-      ullam, similique consequuntur animi magni facere, dolorum labore corporis
-      ad asperiores ipsum repellat repellendus ut? Porro, deleniti dolor, a
-      dignissimos tempore dolore tenetur molestias quo unde sit voluptatum
-      sapiente rem minus quia iste, incidunt totam iure debitis. Distinctio enim
-      praesentium quidem quaerat, ab in incidunt mollitia facere temporibus
-      magni molestias aspernatur nostrum ipsum. Consequuntur, architecto.
+      <article
+        css={css`
+          color: ${current.matches("theme.dark")
+            ? "var(--dark-text)"
+            : "var(--light-text)"};
+          background-color: ${current.matches("theme.dark")
+            ? "var(--dark-background)"
+            : "var(--light-background)"};
+          padding: 1rem;
+          border-radius: 10px;
+          transition: var(--color-transition);
+          display: grid;
+          grid-template: auto 1fr 100px/ 1fr;
+        `}
+      >
+        <header>
+          <Img
+            fluid={data[`${current.value.user}Image`].childImageSharp.fluid}
+          />
+          <h2
+            css={css`
+              text-transform: capitalize;
+            `}
+          >
+            {user.fullName}
+          </h2>
+
+          <em>{user.status}</em>
+        </header>
+
+        <main>{user.bio}</main>
+
+        <footer
+          css={css`
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+
+            a {
+              color: ${`var(--${current.value.user}-primary)`};
+            }
+          `}
+        >
+          {user.social.map(element => (
+            <StyledButton>
+              <a href={element.link} target="blank">
+                <Icon
+                  css={css`
+                    font-size: 2rem;
+                    color: ${`var(--${current.value.user}-primary)`};
+                  `}
+                  icon={socialIcons[element.name]}
+                />
+                {/* <span>{element.name}</span> */}
+              </a>
+            </StyledButton>
+          ))}
+        </footer>
+      </article>
     </aside>
   );
 };

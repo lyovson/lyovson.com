@@ -36,12 +36,16 @@ export default ({ children }) => {
               box-sizing: border-box;
             }
             :root {
-              --jess-accent: #b71c1c;
-              --rafa-accent: #0d47a1;
+              --jess-primary: #b71c1c;
+              --jess-secondary: #6b0505;
+              --rafa-primary: #0974b8;
+              --rafa-secondary: #0b466b;
+              --accent-color: #fffc40;
               --light-text: #121212;
               --light-background: #fafafa;
               --dark-text: #fafafa;
               --dark-background: #121212;
+              --color-transition: 0.2s;
             }
             body {
               color: ${current.matches("theme.dark")
@@ -50,6 +54,10 @@ export default ({ children }) => {
               background-color: ${current.matches("theme.dark")
                 ? "var(--dark-background)"
                 : "var(--light-background)"};
+              transition: var(--color-transition);
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+                sans-serif;
             }
           `}
         />

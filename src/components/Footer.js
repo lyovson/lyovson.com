@@ -15,8 +15,9 @@ export const Footer = () => {
 
         border-image: linear-gradient(
             90deg,
-            var(--rafa-accent) ${current.value.user === "rafa" ? "50%" : "0%"},
-            var(--jess-accent) ${current.value.user === "jess" ? "50%" : "100%"}
+            var(--rafa-primary) ${current.value.user === "rafa" ? "70%" : "0%"},
+            var(--jess-primary)
+              ${current.value.user === "jess" ? "70%" : "100%"}
           )
           1;
         background-color: ${current.matches("theme.dark")
@@ -31,11 +32,14 @@ export const Footer = () => {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         grid-gap: 1rem;
+        z-index: 1;
       `}
     >
       <StyledButton>💛</StyledButton>
       <StyledButton>💙</StyledButton>
-      <StyledButton onClick={() => send("CHANGE_THEME")}>🖤</StyledButton>
+      <StyledButton onClick={() => send("CHANGE_THEME")}>
+        {current.matches("theme.dark") ? "☀️" : "🌖"}
+      </StyledButton>
       <StyledButton>💚</StyledButton>
       <StyledButton>💜</StyledButton>{" "}
     </footer>
