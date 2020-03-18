@@ -1,13 +1,11 @@
-/** @jsx jsx */
-
 import React, { useContext } from "react";
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import { useStaticQuery, graphql } from "gatsby";
 import { ThemeContext } from "./Layout";
 import Img from "gatsby-image";
-import { authors } from "../data/authors";
+import { authors } from "../utils/authors";
 
-import { Icon, InlineIcon } from "@iconify/react";
+import { Icon } from "@iconify/react";
 import twitterIcon from "@iconify/icons-simple-icons/twitter";
 import facebookIcon from "@iconify/icons-simple-icons/facebook";
 import linkedinIcon from "@iconify/icons-simple-icons/linkedin";
@@ -22,7 +20,7 @@ const socialIcons = {
 };
 
 export const Aside = () => {
-  const { current, send } = useContext(ThemeContext);
+  const { current } = useContext(ThemeContext);
   const user = authors[current.value.user];
 
   const data = useStaticQuery(graphql`
@@ -111,16 +109,9 @@ export const Aside = () => {
           `}
         >
           {user.social.map(element => (
-            <StyledButton>
+            <StyledButton key={element.name} user={current.value.user}>
               <a href={element.link} target="blank">
-                <Icon
-                  css={css`
-                    font-size: 2rem;
-                    color: ${`var(--${current.value.user}-primary)`};
-                  `}
-                  icon={socialIcons[element.name]}
-                />
-                {/* <span>{element.name}</span> */}
+                <Icon icon={socialIcons[element.name]} />
               </a>
             </StyledButton>
           ))}

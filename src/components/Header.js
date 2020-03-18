@@ -1,9 +1,6 @@
-/** @jsx jsx */
-
 import React, { useContext } from "react";
-import { css, jsx } from "@emotion/core";
+import { css } from "@emotion/core";
 import { StyledLink } from "../components/styled/StyledLink";
-import { StyledButton } from "../components/styled/StyledButton";
 import { ThemeContext } from "./Layout";
 
 export const Header = () => {
@@ -41,29 +38,36 @@ export const Header = () => {
         z-index: 1;
       `}
     >
-      <StyledButton user="rafa" onClick={() => send("CHANGE_USER_RAFA")}>
+      <StyledLink
+        to="/rafa"
+        user="rafa"
+        onClick={() => send("CHANGE_USER_RAFA")}
+      >
         Rafa
-      </StyledButton>
+      </StyledLink>
       <StyledLink
         css={css`
           grid-column: 2/4;
         `}
-        to="#bio"
+        to="/"
         onClick={() => send("CHANGE_USER_BOTH")}
       >
         <h1
           css={css`
             text-transform: uppercase;
-            font-size: 1.2rem;
-            font-weight: 900;
+            margin-bottom: 0;
           `}
         >
           lyovson.com
         </h1>
       </StyledLink>
-      <StyledButton user="jess" onClick={() => send("CHANGE_USER_JESS")}>
+      <StyledLink
+        to="/jess"
+        user="jess"
+        onClick={() => send("CHANGE_USER_JESS")}
+      >
         Jess
-      </StyledButton>
+      </StyledLink>
     </header>
   );
 };

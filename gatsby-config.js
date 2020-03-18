@@ -15,7 +15,16 @@ module.exports = {
         path: path.join(__dirname, `src`, `images`)
       }
     },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/styles`
+      }
+    },
+
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-react-helmet`
   ]
 };

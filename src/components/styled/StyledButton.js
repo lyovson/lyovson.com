@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
 
 export const StyledButton = styled("button")`
-  color: inherit;
+  color: #704e7a;
   background: inherit;
-  border: ${props => `3px solid var(--${props.user}-primary)`};
-  border-radius: 10px;
+  border: 0px;
   padding: 0.5rem;
   outline: none;
   height: 100%;
@@ -14,8 +13,14 @@ export const StyledButton = styled("button")`
   font-size: 0.9rem;
   font-weight: 900;
   transition: var(--color-transition);
+  text-align: center;
+
   &:active {
     transform: translateY(5px);
-    border: ${props => `3px solid var(--${props.user}-secondary)`};
+  }
+
+  a {
+    font-size: 1.5rem;
+    color: ${props => `var(--${props.user}-primary)`};
   }
 `;

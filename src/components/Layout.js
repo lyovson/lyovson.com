@@ -1,22 +1,26 @@
-/** @jsx jsx */
-
 import React from "react";
-import { jsx, Global, css } from "@emotion/core";
-
-import { Header } from "./Header";
-
-import { Footer } from "./Footer";
-
+import { Global, css } from "@emotion/core";
+import { Helmet } from "react-helmet";
 import { useMachine } from "@xstate/react";
 
-import { themeMachine } from "../machines/themeMachine";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
+import { themeMachine } from "../machines/themeMachine";
+import { authors } from "../utils/authors";
+import { colors, normalize } from "../utils/styles";
+
+console.log("Authors", authors);
 export const ThemeContext = React.createContext();
 
 export default ({ children }) => {
   const [current, send] = useMachine(themeMachine);
   return (
     <ThemeContext.Provider value={{ current: current, send: send }}>
+      <Helmet defer={false}>
+        <title>Lyovson.com</title>
+      </Helmet>
+
       <div
         className="app"
         css={css`
@@ -32,19 +36,16 @@ export default ({ children }) => {
       >
         <Global
           styles={css`
-            * {
-              box-sizing: border-box;
-            }
             :root {
-              --jess-primary: #b71c1c;
-              --jess-secondary: #6b0505;
-              --rafa-primary: #0974b8;
-              --rafa-secondary: #0b466b;
-              --accent-color: #fffc40;
-              --light-text: #121212;
-              --light-background: #fafafa;
-              --dark-text: #fafafa;
-              --dark-background: #121212;
+              --jess-primary: ${colors.jess.primary};
+              --jess-secondary: ${colors.jess.dark};
+              --rafa-primary: ${colors.rafa.primary};
+              --rafa-secondary: ${colors.rafa.dark};
+              --accent-color: ${colors.accent.primary};
+              --light-text: ${colors.light.text};
+              --light-background: ${colors.light.background};
+              --dark-text: ${colors.dark.text};
+              --dark-background: ${colors.dark.background};
               --color-transition: 0.2s;
             }
             body {
@@ -55,9 +56,6 @@ export default ({ children }) => {
                 ? "var(--dark-background)"
                 : "var(--light-background)"};
               transition: var(--color-transition);
-              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-                sans-serif;
             }
           `}
         />
