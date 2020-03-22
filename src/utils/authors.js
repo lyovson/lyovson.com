@@ -23,15 +23,10 @@ export const authors = {
     avatar: "rafa.png",
     social: [
       { name: "email", link: "mailto:rafa@lyovson.com" },
-      { name: "twitter", link: "https://twitter.com" },
-      { name: "facebook", link: "https://facebook.com" },
-      { name: "linkedin", link: "https://linkedin.com" }
-    ],
-
-    styles: {
-      primaryColor: "#1565C0",
-      secondaryColor: "#0b466b"
-    }
+      { name: "twitter", link: "https://twitter.com/lyovson" },
+      { name: "facebook", link: "https://facebook.com/rafa.lyovson" },
+      { name: "linkedin", link: "https://www.linkedin.com/in/lyovson/" }
+    ]
   },
   jess: {
     id: "jess",
@@ -45,14 +40,9 @@ export const authors = {
 
     social: [
       { name: "email", link: "mailto:jess@lyovson.com" },
-      { name: "twitter", link: "https://twitter.com" },
-      { name: "facebook", link: "https://facebook.com" },
-      { name: "linkedin", link: "https://linkedin.com" }
-    ],
-
-    styles: {
-      primaryColor: "#b92b27",
-      secondaryColor: "#6b0505"
-    }
+      { name: "twitter", link: "https://twitter.com/jesslyovson" },
+      { name: "facebook", link: "https://www.facebook.com/hasmik.khachunts" },
+      { name: "linkedin", link: "https://www.linkedin.com/in/khachunts/" }
+    ]
   }
 };

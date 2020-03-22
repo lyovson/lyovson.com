@@ -1,11 +1,9 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { Aside } from "../components/Aside";
 
 export default () => {
   return (
     <Layout>
-      <Aside />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed repudiandae
         possimus reiciendis nam odit alias explicabo cumque cum commodi

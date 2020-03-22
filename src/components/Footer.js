@@ -10,7 +10,7 @@ import linkedinIcon from "@iconify/icons-simple-icons/linkedin";
 import mailDotRu from "@iconify/icons-simple-icons/mail-dot-ru";
 
 export const Footer = () => {
-  const { current, send } = useContext(ThemeContext);
+  const { state, dispatch } = useContext(ThemeContext);
 
   return (
     <footer
@@ -19,12 +19,11 @@ export const Footer = () => {
         padding: 0.5rem;
         border-image: linear-gradient(
             90deg,
-            var(--rafa-primary) ${current.value.user === "rafa" ? "70%" : "0%"},
-            var(--jess-primary)
-              ${current.value.user === "jess" ? "70%" : "100%"}
+            var(--rafa-primary) ${state.user === "rafa" ? "70%" : "0%"},
+            var(--jess-primary) ${state.user === "jess" ? "70%" : "100%"}
           )
           1;
-        background-color: ${current.matches("theme.dark")
+        background-color: ${state.theme === "dark"
           ? "var(--dark-background)"
           : "var(--light-background)"};
 
@@ -38,12 +37,12 @@ export const Footer = () => {
         z-index: 1;
       `}
     >
-      <StyledButton user={current.value.user}>
+      <StyledButton user={state.user}>
         <a href="/ ">
           <Icon icon={twitterIcon} />
         </a>
       </StyledButton>
-      <StyledButton user={current.value.user}>
+      <StyledButton user={state.user}>
         <a href="/ ">
           <Icon icon={facebookIcon} />
         </a>
@@ -52,16 +51,16 @@ export const Footer = () => {
         css={css`
           font-size: 1.5rem;
         `}
-        onClick={() => send("CHANGE_THEME")}
+        onClick={() => dispatch("CHANGE_THEME")}
       >
-        {current.matches("theme.dark") ? "☀️" : "🌖"}
+        {state.theme === "dark" ? "☀️" : "🌖"}
       </StyledButton>
-      <StyledButton user={current.value.user}>
+      <StyledButton user={state.user}>
         <a href="/ ">
           <Icon icon={linkedinIcon} />
         </a>
       </StyledButton>
-      <StyledButton user={current.value.user}>
+      <StyledButton user={state.user}>
         <a href="/ ">
           <Icon icon={mailDotRu} />
         </a>

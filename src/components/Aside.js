@@ -20,8 +20,8 @@ const socialIcons = {
 };
 
 export const Aside = () => {
-  const { current } = useContext(ThemeContext);
-  const user = authors[current.value.user];
+  const { state } = useContext(ThemeContext);
+  const user = authors[state.user];
 
   const data = useStaticQuery(graphql`
     query {
@@ -42,7 +42,7 @@ export const Aside = () => {
     }
   `);
 
-  if (current.value.user === "both") {
+  if (!state.user) {
     return null;
   }
 
@@ -50,73 +50,92 @@ export const Aside = () => {
     <aside
       id="bio"
       css={css`
-        display: grid;
-        grid-area: aside;
+        padding: 1rem;
+
+        grid-area: ${state.user === "rafa" ? "laside" : "raside"};
+        position: fixed;
+        top: 100px;
+        left: 10%;
+        right: 10%;
+        bottom: 100px;
+        overflow: scroll;
         place-items: center;
-        padding: 5px;
-        border-radius: 10px;
-        max-width: 90%;
-        margin: auto;
-        background: linear-gradient(
-          90deg,
-          var(--rafa-primary) ${current.value.user === "rafa" ? "70%" : "0%"},
-          var(--jess-primary) ${current.value.user === "jess" ? "70%" : "100%"}
-        );
+        border: 5px solid;
+        border-image: linear-gradient(
+            90deg,
+            var(--rafa-primary) ${state.user === "rafa" ? "70%" : "0%"},
+            var(--jess-primary) ${state.user === "jess" ? "70%" : "100%"}
+          )
+          1;
+        color: ${state.theme === "dark"
+          ? "var(--dark-text)"
+          : "var(--light-text)"};
+        background-color: ${state.theme === "dark"
+          ? "var(--dark-background)"
+          : "var(--light-background)"};
+
+        transition: var(--color-transition);
+        display: grid;
+        grid-template: auto 1fr 100px/ 1fr;
+        z-index: 0;
+        @media screen and (min-width: 700px) {
+          top: 79px;
+          bottom: 80px;
+
+          ${state.user === "rafa"
+            ? `width: 30%;
+                 left: 0;
+              `
+            : state.user === "jess"
+            ? `width: 30%;
+               left: calc(100vw - 30% );
+              `
+            : null};
+        }
       `}
     >
-      <article
-        css={css`
-          color: ${current.matches("theme.dark")
-            ? "var(--dark-text)"
-            : "var(--light-text)"};
-          background-color: ${current.matches("theme.dark")
-            ? "var(--dark-background)"
-            : "var(--light-background)"};
-          padding: 1rem;
-          border-radius: 10px;
-          transition: var(--color-transition);
-          display: grid;
-          grid-template: auto 1fr 100px/ 1fr;
-        `}
-      >
-        <header>
-          <Img
-            fluid={data[`${current.value.user}Image`].childImageSharp.fluid}
-          />
-          <h2
-            css={css`
-              text-transform: capitalize;
-            `}
-          >
-            {user.fullName}
-          </h2>
-
-          <em>{user.status}</em>
-        </header>
-
-        <main>{user.bio}</main>
-
-        <footer
+      <header>
+        <Img fluid={data[`${state.user}Image`].childImageSharp.fluid} />
+        <h2
           css={css`
-            display: flex;
-            justify-content: space-between;
-            padding: 0;
-            margin: 0;
-
-            a {
-              color: ${`var(--${current.value.user}-primary)`};
-            }
+            text-transform: capitalize;
           `}
         >
-          {user.social.map(element => (
-            <StyledButton key={element.name} user={current.value.user}>
-              <a href={element.link} target="blank">
-                <Icon icon={socialIcons[element.name]} />
-              </a>
-            </StyledButton>
-          ))}
-        </footer>
-      </article>
+          {user.fullName}
+        </h2>
+
+        <em>{user.status}</em>
+      </header>
+
+      {/* <main>{user.bio}</main> */}
+      <nav>
+        <li>Link</li>
+        <li>Link</li>
+        <li>Link</li>
+        <li>Link</li>
+        <li>Link</li>
+      </nav>
+
+      <footer
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          padding: 0;
+          margin: 0;
+
+          a {
+            color: ${`var(--${state.user}-primary)`};
+          }
+        `}
+      >
+        {user.social.map(element => (
+          <StyledButton key={element.name} user={state.user}>
+            <a href={element.link} target="blank">
+              <Icon icon={socialIcons[element.name]} />
+            </a>
+          </StyledButton>
+        ))}
+      </footer>
     </aside>
   );
 };

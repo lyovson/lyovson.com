@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Global, css } from "@emotion/core";
 import { Helmet } from "react-helmet";
-import { useMachine } from "@xstate/react";
 
 import { Header } from "./Header";
+import { Aside } from "./Aside";
 import { Footer } from "./Footer";
 
-import { themeMachine } from "../machines/themeMachine";
-import { authors } from "../utils/authors";
-import { colors, normalize } from "../utils/styles";
+import { themeReducer, initialState } from "../utils/themeReducer";
+import { globalStyles, normalize } from "../utils/styles";
 
-console.log("Authors", authors);
 export const ThemeContext = React.createContext();
 
 export default ({ children }) => {
-  const [current, send] = useMachine(themeMachine);
+  const [state, dispatch] = useReducer(themeReducer, initialState);
+
   return (
-    <ThemeContext.Provider value={{ current: current, send: send }}>
+    <ThemeContext.Provider value={{ state: state, dispatch: dispatch }}>
       <Helmet defer={false}>
         <title>Lyovson.com</title>
       </Helmet>
@@ -25,34 +24,26 @@ export default ({ children }) => {
         className="app"
         css={css`
           display: grid;
-          position: relative;
+          grid-gap: 1rem;
           grid-template-areas:
-            "header"
-            "aside"
-            "content"
-            "footer";
-          grid-template-rows: 100px auto 1fr 100px;
+            "header header header"
+            "laside content raside"
+            "footer footer footer";
+          grid-template-rows: 100px 1fr 100px;
+          grid-template-columns: auto auto auto;
+          align-items: center;
+          margin: 1rem;
         `}
       >
         <Global
           styles={css`
-            :root {
-              --jess-primary: ${colors.jess.primary};
-              --jess-secondary: ${colors.jess.dark};
-              --rafa-primary: ${colors.rafa.primary};
-              --rafa-secondary: ${colors.rafa.dark};
-              --accent-color: ${colors.accent.primary};
-              --light-text: ${colors.light.text};
-              --light-background: ${colors.light.background};
-              --dark-text: ${colors.dark.text};
-              --dark-background: ${colors.dark.background};
-              --color-transition: 0.2s;
-            }
+            ${normalize};
+            ${globalStyles};
             body {
-              color: ${current.matches("theme.dark")
+              color: ${state.theme === "dark"
                 ? "var(--dark-text)"
                 : "var(--light-text)"};
-              background-color: ${current.matches("theme.dark")
+              background-color: ${state.theme === "dark"
                 ? "var(--dark-background)"
                 : "var(--light-background)"};
               transition: var(--color-transition);
@@ -62,13 +53,26 @@ export default ({ children }) => {
 
         <Header />
 
-        <div
+        <Aside
           css={css`
             grid-area: content;
           `}
+        />
+
+        <main
+          css={css`
+            grid-area: content;
+
+            ${state.user === "rafa"
+              ? "margin-left: 30%"
+              : state.user === "jess"
+              ? "margin-right: 30%"
+              : "margin: 0"};
+          `}
         >
           {children}
-        </div>
+        </main>
+
         <Footer />
       </div>
     </ThemeContext.Provider>

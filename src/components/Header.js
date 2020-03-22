@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import { css } from "@emotion/core";
 import { StyledLink } from "../components/styled/StyledLink";
+import { StyledButton } from "../components/styled/StyledButton";
 import { ThemeContext } from "./Layout";
 
 export const Header = () => {
-  const { current, send } = useContext(ThemeContext);
+  const { state, dispatch } = useContext(ThemeContext);
 
   return (
     <header
       css={css`
-        background-color: ${current.matches("theme.dark")
+        background-color: ${state.theme === "dark"
           ? "var(--dark-background)"
           : "var(--light-background)"};
 
@@ -17,9 +18,8 @@ export const Header = () => {
 
         border-image: linear-gradient(
             90deg,
-            var(--rafa-primary) ${current.value.user === "rafa" ? "70%" : "0%"},
-            var(--jess-primary)
-              ${current.value.user === "jess" ? "70%" : "100%"}
+            var(--rafa-primary) ${state.user === "rafa" ? "70%" : "0%"},
+            var(--jess-primary) ${state.user === "jess" ? "70%" : "100%"}
           )
           1;
 
@@ -38,36 +38,34 @@ export const Header = () => {
         z-index: 1;
       `}
     >
-      <StyledLink
-        to="/rafa"
-        user="rafa"
-        onClick={() => send("CHANGE_USER_RAFA")}
-      >
+      <StyledButton user="rafa" onClick={() => dispatch("CHANGE_USER_RAFA")}>
         Rafa
-      </StyledLink>
+      </StyledButton>
+
       <StyledLink
         css={css`
           grid-column: 2/4;
         `}
         to="/"
-        onClick={() => send("CHANGE_USER_BOTH")}
+        onClick={() => dispatch("REMOVE_USER")}
       >
         <h1
           css={css`
             text-transform: uppercase;
             margin-bottom: 0;
+            font-size: 1.5rem;
           `}
         >
           lyovson.com
         </h1>
       </StyledLink>
-      <StyledLink
-        to="/jess"
+      <StyledButton
+        to="/#bio"
         user="jess"
-        onClick={() => send("CHANGE_USER_JESS")}
+        onClick={() => dispatch("CHANGE_USER_JESS")}
       >
         Jess
-      </StyledLink>
+      </StyledButton>
     </header>
   );
 };
