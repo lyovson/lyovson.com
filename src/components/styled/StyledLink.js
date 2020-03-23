@@ -7,19 +7,19 @@ export const StyledLink = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
+  text-transform: uppercase;
   color: inherit;
   padding: 0.5rem;
-
-  border: ${props => `3px solid var(--${props.user}-primary)`};
-  border-radius: 10px;
-
+  border-bottom: 3px solid;
+  border-image: var(--border-gradient);
   height: 100%;
 
   &:hover {
-    border: ${props => `3px solid var(--${props.user}-secondary)`};
+    font-style: italic;
   }
   &:active {
     transform: translateY(5px);
-    border: ${props => `3px solid var(--${props.user}-secondary)`};
+
+    font-style: italic;
   }
 `;

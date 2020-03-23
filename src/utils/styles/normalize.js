@@ -25,7 +25,7 @@ export const normalize = css`
  */
 
   html {
-    line-height: 1.15; /* 1 */
+    line-height: 1.6; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     -webkit-tap-highlight-color: transparent; /* 3*/
   }

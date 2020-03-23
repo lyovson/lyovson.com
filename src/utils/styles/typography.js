@@ -2,7 +2,8 @@ import Typography from "typography";
 
 const typography = new Typography({
   baseFontSize: "20px",
-  baseLineHeight: 1.5,
+  baseLineHeight: 2,
+  scaleRatio: 2,
   headerFontFamily: ["Exo 2"],
   bodyFontFamily: ["Exo 2"],
 

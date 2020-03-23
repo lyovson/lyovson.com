@@ -17,12 +17,7 @@ export const Footer = () => {
       css={css`
         border-top: 5px solid;
         padding: 0.5rem;
-        border-image: linear-gradient(
-            90deg,
-            var(--rafa-primary) ${state.user === "rafa" ? "70%" : "0%"},
-            var(--jess-primary) ${state.user === "jess" ? "70%" : "100%"}
-          )
-          1;
+        border-image: var(--border-gradient);
         background-color: ${state.theme === "dark"
           ? "var(--dark-background)"
           : "var(--light-background)"};

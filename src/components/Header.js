@@ -16,12 +16,7 @@ export const Header = () => {
 
         border-bottom: 5px solid;
 
-        border-image: linear-gradient(
-            90deg,
-            var(--rafa-primary) ${state.user === "rafa" ? "70%" : "0%"},
-            var(--jess-primary) ${state.user === "jess" ? "70%" : "100%"}
-          )
-          1;
+        border-image: var(--border-gradient);
 
         display: grid;
         grid-area: footer;
@@ -38,13 +33,20 @@ export const Header = () => {
         z-index: 1;
       `}
     >
-      <StyledButton user="rafa" onClick={() => dispatch("CHANGE_USER_RAFA")}>
+      <StyledButton
+        user="rafa"
+        onClick={() => {
+          dispatch("CHANGE_USER_RAFA");
+        }}
+      >
         Rafa
       </StyledButton>
 
       <StyledLink
         css={css`
           grid-column: 2/4;
+          border-bottom: 0px;
+          border-image: none;
         `}
         to="/"
         onClick={() => dispatch("REMOVE_USER")}
@@ -60,9 +62,10 @@ export const Header = () => {
         </h1>
       </StyledLink>
       <StyledButton
-        to="/#bio"
         user="jess"
-        onClick={() => dispatch("CHANGE_USER_JESS")}
+        onClick={() => {
+          dispatch("CHANGE_USER_JESS");
+        }}
       >
         Jess
       </StyledButton>

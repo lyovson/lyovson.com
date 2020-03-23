@@ -1,9 +1,28 @@
 import React from "react";
 import Layout from "../components/Layout";
+import { css } from "@emotion/core";
+import { motion } from "framer-motion";
 
 export default () => {
   return (
-    <Layout>
+    <motion.div
+      initial={{ y: -1000 }}
+      animate={{ y: 0 }}
+      exit={{ y: -1000 }}
+      css={css`
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        grid-gap: 1rem;
+        padding: 0 1rem;
+
+        p {
+          padding: 1rem;
+          border: 5px solid var(--accent-color);
+          border-image: var(--border-gradient);
+        }
+      `}
+    >
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed repudiandae
         possimus reiciendis nam odit alias explicabo cumque cum commodi
@@ -11,15 +30,18 @@ export default () => {
         ipsa. Ipsa nostrum maiores architecto eaque adipisci tempore, quam ut
         iste sint corrupti officia hic officiis magnam rerum excepturi eos vel
         voluptatibus dolorem porro doloremque provident quisquam modi quas! Rem,
-        error. Blanditiis pariatur accusantium eum dolores mollitia assumenda,
-        impedit ab quibusdam minus harum maiores, architecto soluta. Temporibus
-        quos non est corporis aperiam ad! Quia quasi esse consequuntur
-        temporibus, quisquam aspernatur doloremque voluptatem ipsum, eaque nemo
-        minima nihil adipisci. Vero iure cupiditate ut, illum nobis fuga
-        praesentium. Quam incidunt iure in voluptatem mollitia soluta reiciendis
-        possimus totam excepturi eos nihil quaerat ipsam quisquam rerum sit, ad
-        consequatur itaque eligendi officia necessitatibus aliquam! Quos
-        temporibus at consectetur modi eius quod dolorum, autem cum maxime,
+        error. <a href="#"> Blanditiis pariatur accusantium</a> eum dolores
+        mollitia assumenda, impedit ab quibusdam minus harum maiores, architecto
+        soluta. Temporibus quos non est corporis aperiam ad! Quia quasi esse
+        consequuntur temporibus, quisquam aspernatur doloremque voluptatem
+        ipsum, eaque nemo minima nihil adipisci. Vero iure cupiditate ut, illum
+        nobis fuga praesentium. Quam incidunt iure in voluptatem mollitia soluta
+        reiciendis possimus totam excepturi eos nihil quaerat ipsam quisquam
+        rerum sit, ad consequatur itaque eligendi officia necessitatibus
+        aliquam!
+      </p>
+      <p>
+        Quos temporibus at consectetur modi eius quod dolorum, autem cum maxime,
         architecto eveniet quas laudantium sit nostrum harum. Voluptatem illum
         esse nihil id, accusamus officiis tempora nemo debitis nam facere totam
         enim quod magnam vero, minima, asperiores doloremque fuga consequatur.
@@ -35,7 +57,10 @@ export default () => {
         nostrum nobis deleniti velit cumque quis saepe minima ad sunt optio,
         recusandae quo et reprehenderit voluptates inventore aliquid
         consequuntur. Commodi, illum? Quo provident quasi id laboriosam hic eos
-        ut. Pariatur numquam aut sapiente maxime? Explicabo ab eligendi qui quam
+        ut.
+      </p>
+      <p>
+        Pariatur numquam aut sapiente maxime? Explicabo ab eligendi qui quam
         consectetur facilis doloremque quod voluptate quidem dolore, ipsam enim
         laborum aperiam voluptatem. Iure, sequi. Saepe nihil quo earum neque
         corrupti consequatur commodi quasi ipsum enim doloribus repudiandae
@@ -48,31 +73,34 @@ export default () => {
         molestiae aperiam illum enim facilis veritatis vel tempore ipsa quae
         ipsam in! Laborum delectus odio quam, cum perspiciatis beatae in est
         modi dolor labore nesciunt commodi exercitationem asperiores quisquam
-        aut dolorum quaerat ut culpa porro laboriosam pariatur expedita. Aut
-        ducimus, aliquid quaerat excepturi expedita laudantium, deleniti debitis
-        possimus dolores aspernatur similique dolorem magni eaque laboriosam
-        adipisci qui facere tempora molestiae nulla, sed perspiciatis. Est, ad
-        eius. Ducimus blanditiis quisquam, mollitia facere pariatur fuga neque,
-        quam error a dolorem nemo atque magnam esse accusantium, possimus
-        molestias commodi dicta tempora voluptas officia iure odit? Quia laborum
-        provident, pariatur dolor, dolorem laudantium a sint repellendus saepe
-        quo eius impedit tenetur? Necessitatibus ea facere, molestias nisi
-        molestiae est magni maxime. Sunt, rerum obcaecati exercitationem labore
-        at mollitia harum hic debitis error, amet suscipit vel necessitatibus.
-        Saepe voluptas sunt laboriosam error expedita, alias reiciendis nihil
-        sequi nisi eveniet quis aspernatur modi iste porro! Optio facere eius
-        libero iusto, placeat modi quia in distinctio odio repellat, ea ex earum
-        voluptate delectus consectetur numquam necessitatibus? Autem eos
-        accusamus error consectetur nisi, praesentium quas nobis ratione
-        exercitationem. Amet ducimus eius a vitae sed quod doloribus,
-        repellendus quaerat soluta dicta at eaque! Libero provident expedita
-        nihil, repellendus ipsum aut mollitia repudiandae maiores voluptatibus
-        minus hic adipisci, possimus tempore eum eligendi beatae magni fuga
-        repellat ullam deserunt labore cupiditate quo sapiente. Neque dolor
-        voluptas voluptates dolorem ducimus id deleniti accusantium, perferendis
-        mollitia ipsa tenetur soluta, similique eum iste inventore quidem
-        sapiente dicta optio! Libero, ex dolorem illum quibusdam dolores nihil
-        molestias beatae perferendis nostrum exercitationem placeat itaque
+        aut dolorum quaerat ut culpa porro laboriosam pariatur expedita.Illo
+        delectus nostrum error nemo illum!
+      </p>
+      <p>
+        Aut ducimus, aliquid quaerat excepturi expedita laudantium, deleniti
+        debitis possimus dolores aspernatur similique dolorem magni eaque
+        laboriosam adipisci qui facere tempora molestiae nulla, sed
+        perspiciatis. Est, ad eius. Ducimus blanditiis quisquam, mollitia facere
+        pariatur fuga neque, quam error a dolorem nemo atque magnam esse
+        accusantium, possimus molestias commodi dicta tempora voluptas officia
+        iure odit? Quia laborum provident, pariatur dolor, dolorem laudantium a
+        sint repellendus saepe quo eius impedit tenetur? Necessitatibus ea
+        facere, molestias nisi molestiae est magni maxime. Sunt, rerum obcaecati
+        exercitationem labore at mollitia harum hic debitis error, amet suscipit
+        vel necessitatibus. Saepe voluptas sunt laboriosam error expedita, alias
+        reiciendis nihil sequi nisi eveniet quis aspernatur modi iste porro!
+        Optio facere eius libero iusto, placeat modi quia in distinctio odio
+        repellat, ea ex earum voluptate delectus consectetur numquam
+        necessitatibus? Autem eos accusamus error consectetur nisi, praesentium
+        quas nobis ratione exercitationem. Amet ducimus eius a vitae sed quod
+        doloribus, repellendus quaerat soluta dicta at eaque! Libero provident
+        expedita nihil, repellendus ipsum aut mollitia repudiandae maiores
+        voluptatibus minus hic adipisci, possimus tempore eum eligendi beatae
+        magni fuga repellat ullam deserunt labore cupiditate quo sapiente. Neque
+        dolor voluptas voluptates dolorem ducimus id deleniti accusantium,
+        perferendis mollitia ipsa tenetur soluta, similique eum iste inventore
+        quidem sapiente dicta optio! Libero, ex dolorem illum quibusdam dolores
+        nihil molestias beatae perferendis nostrum exercitationem placeat itaque
         explicabo reprehenderit voluptatum voluptatem asperiores, numquam sed
         blanditiis. Saepe, esse. Commodi officiis dolorum pariatur recusandae
         quasi. Pariatur maiores, officiis in repudiandae eum, voluptate
@@ -88,7 +116,9 @@ export default () => {
         minima laborum ea magnam ducimus voluptates! Ipsum tenetur voluptas
         sequi, officiis quis perspiciatis, mollitia architecto animi repellat at
         rerum magnam maiores impedit itaque? Officia ipsum cupiditate ut
-        exercitationem asperiores? Illo delectus nostrum error nemo illum!
+        exercitationem asperiores?
+      </p>
+      <p>
         Inventore quia doloremque rerum quos iusto blanditiis eum! Quod,
         accusamus exercitationem sunt, quia odit deleniti enim molestiae modi
         amet laborum consequuntur magni non ea perspiciatis voluptas cum,
@@ -116,6 +146,6 @@ export default () => {
         assumenda exercitationem inventore harum vel ex nam praesentium
         reiciendis aliquam. Vitae eaque error dolorum nesciunt, fugiat soluta.
       </p>
-    </Layout>
+    </motion.div>
   );
 };

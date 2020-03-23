@@ -22,5 +22,7 @@ export const StyledButton = styled("button")`
   a {
     font-size: 1.5rem;
     color: ${props => `var(--${props.user}-primary)`};
+    border-bottom: 0px;
+    border-image: none;
   }
 `;

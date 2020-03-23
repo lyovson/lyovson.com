@@ -14,4 +14,13 @@ export const globalStyles = css`
     --dark-background: ${colors.dark.background};
     --color-transition: 0.5s;
   }
+
+  a {
+    border-bottom: 3px solid;
+    border-image: var(--border-gradient);
+    padding-bottom: 0.2rem;
+    &:hover {
+      font-style: italic;
+    }
+  }
 `;
