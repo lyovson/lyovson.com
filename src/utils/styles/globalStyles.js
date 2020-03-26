@@ -12,15 +12,25 @@ export const globalStyles = css`
     --light-background: ${colors.light.background};
     --dark-text: ${colors.dark.text};
     --dark-background: ${colors.dark.background};
-    --color-transition: 0.5s;
+    --color-transition: 0.3s;
   }
 
   a {
+    display: inline-block;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
     border-bottom: 3px solid;
     border-image: var(--border-gradient);
+    border-image: var(--border-gradient);
     padding-bottom: 0.2rem;
+    transition: 0.2s;
     &:hover {
       font-style: italic;
+      transform: scale(0.9);
+    }
+    &:active {
+      transform: scale(0.8);
     }
   }
 `;

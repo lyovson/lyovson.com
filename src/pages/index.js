@@ -1,20 +1,14 @@
 import React from "react";
-import Layout from "../components/Layout";
 import { css } from "@emotion/core";
-import { motion } from "framer-motion";
 
 export default () => {
   return (
-    <motion.div
-      initial={{ y: -1000 }}
-      animate={{ y: 0 }}
-      exit={{ y: -1000 }}
+    <div
       css={css`
         display: grid;
         grid-template-columns: 1fr;
         grid-auto-rows: auto;
         grid-gap: 1rem;
-        padding: 0 1rem;
 
         p {
           padding: 1rem;
@@ -30,7 +24,7 @@ export default () => {
         ipsa. Ipsa nostrum maiores architecto eaque adipisci tempore, quam ut
         iste sint corrupti officia hic officiis magnam rerum excepturi eos vel
         voluptatibus dolorem porro doloremque provident quisquam modi quas! Rem,
-        error. <a href="#"> Blanditiis pariatur accusantium</a> eum dolores
+        error. <a href="/#"> Blanditiis pariatur accusantium</a> eum dolores
         mollitia assumenda, impedit ab quibusdam minus harum maiores, architecto
         soluta. Temporibus quos non est corporis aperiam ad! Quia quasi esse
         consequuntur temporibus, quisquam aspernatur doloremque voluptatem
@@ -146,6 +140,6 @@ export default () => {
         assumenda exercitationem inventore harum vel ex nam praesentium
         reiciendis aliquam. Vitae eaque error dolorum nesciunt, fugiat soluta.
       </p>
-    </motion.div>
+    </div>
   );
 };

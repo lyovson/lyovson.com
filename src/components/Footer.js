@@ -16,6 +16,10 @@ export const Footer = () => {
     <footer
       css={css`
         border-top: 5px solid;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-image: var(--border-gradient);
         padding: 0.5rem;
         border-image: var(--border-gradient);
         background-color: ${state.theme === "dark"

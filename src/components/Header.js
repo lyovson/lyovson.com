@@ -14,13 +14,17 @@ export const Header = () => {
           ? "var(--dark-background)"
           : "var(--light-background)"};
 
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
         border-bottom: 5px solid;
+        border-image: var(--border-gradient);
 
         border-image: var(--border-gradient);
 
         display: grid;
         grid-area: footer;
-        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-columns: 1fr 2fr 1fr;
         grid-gap: 1rem;
         justify-content: space-between;
         align-items: center;
@@ -35,6 +39,9 @@ export const Header = () => {
     >
       <StyledButton
         user="rafa"
+        css={css`
+          color: var(--rafa-primary);
+        `}
         onClick={() => {
           dispatch("CHANGE_USER_RAFA");
         }}
@@ -44,9 +51,13 @@ export const Header = () => {
 
       <StyledLink
         css={css`
-          grid-column: 2/4;
+          grid-column: 2/3;
           border-bottom: 0px;
           border-image: none;
+
+          &:hover {
+            font-style: normal;
+          }
         `}
         to="/"
         onClick={() => dispatch("REMOVE_USER")}
@@ -63,6 +74,9 @@ export const Header = () => {
       </StyledLink>
       <StyledButton
         user="jess"
+        css={css`
+          color: var(--jess-primary);
+        `}
         onClick={() => {
           dispatch("CHANGE_USER_JESS");
         }}

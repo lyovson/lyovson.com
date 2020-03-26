@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "gatsby";
 import { css } from "@emotion/core";
 import { useStaticQuery, graphql } from "gatsby";
 import { ThemeContext } from "./Layout";
@@ -47,14 +46,29 @@ export const Aside = () => {
     }
   `);
 
+  const variants = {
+    visible: {
+      opacity: 1,
+      x: 0
+    },
+    hiddenRafa: {
+      opacity: 0,
+      x: -100
+    },
+    hiddenJess: {
+      opacity: 0,
+      x: 100
+    }
+  };
+
   return (
     <AnimatePresence>
       <motion.aside
         key={state.user}
-        initial={{ opacity: 0, y: -100, height: 0 }}
-        animate={{ opacity: 1, y: 0, height: "auto" }}
-        exit={{ opacity: 0, y: -100, height: 0 }}
-        // transition={{ type: "spring", damping: 300 }}
+        initial={state.user === "jess" ? "hiddenJess" : "hiddenRafa"}
+        animate="visible"
+        exit={state.user === "jess" ? "hiddenJess" : "hiddenRafa"}
+        variants={variants}
         drag
         dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
         onDrag={(e, i) => {
@@ -85,7 +99,7 @@ export const Aside = () => {
           display: grid;
           grid-template: auto 1fr 100px/ 1fr;
           z-index: 0;
-          @media screen and (min-width: 800px) {
+          @media screen and (min-width: 700px) {
             top: calc(100px + 1rem);
             bottom: calc(100px + 1rem);
             min-width: auto;
@@ -122,11 +136,40 @@ export const Aside = () => {
         </header>
 
         <nav>
-          <StyledLink to={`/${state.user}/`}>Home</StyledLink>
-          <StyledLink to={`/${state.user}/bio`}>Bio</StyledLink>
-          <StyledLink to={`/${state.user}/projects`}>Projects</StyledLink>
-          <StyledLink to={`/${state.user}/portfolio`}>Portfolio</StyledLink>
-          <StyledLink to={`/${state.user}/contact`}>Contact</StyledLink>
+          <StyledLink
+            animate={{ y: "2px" }}
+            onClick={() => dispatch("REMOVE_USER")}
+            to={`/${state.user}/`}
+          >
+            Home
+          </StyledLink>
+          <StyledLink
+            animate={{ y: "2px" }}
+            onClick={() => dispatch("REMOVE_USER")}
+            to={`/${state.user}/bio`}
+          >
+            Bio
+          </StyledLink>
+          <StyledLink
+            animate={{ y: "2px" }}
+            onClick={() => dispatch("REMOVE_USER")}
+            to={`/${state.user}/projects`}
+          >
+            Projects
+          </StyledLink>
+          <StyledLink
+            animate={{ y: "2px" }}
+            onClick={() => dispatch("REMOVE_USER")}
+            to={`/${state.user}/portfolio`}
+          >
+            Portfolio
+          </StyledLink>
+          <StyledLink
+            onClick={() => dispatch("REMOVE_USER")}
+            to={`/${state.user}/contact`}
+          >
+            Contact
+          </StyledLink>
         </nav>
 
         <footer
